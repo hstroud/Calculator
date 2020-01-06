@@ -10,7 +10,7 @@
 #main {
     background: white;
     height: 100%;
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     padding: 20px;
     display: flex;
@@ -21,18 +21,32 @@
 #calculatorMain {
     background-color: #d4d3d3;
     color: white;
-    height: 400px;
-    width: 250px;
-    padding: 20px;
+    height: 350px;
+    width: 300px;
+    padding: 10px;
 }
 
 #screen {
     background-color: white;
     color: black;
     margin-top: 2px;
-    margin-left: 8px;
+    margin-left: 20px;
     width: 90%;
     height: 15%;
+}
+
+#topDiv {
+    display: flex;
+    justify-content: right;
+    flex-wrap: wrap;
+    height: 250px;
+    width: 280px;
+    margin-top: 20px;
+}
+
+#bottomDiv {
+    height: 50px;
+    width: 350px;
 }
 
 #screenNumber {
@@ -43,8 +57,33 @@
 }
 
 button {
-    margin-top: 9px;
-    margin-left: 8px;
-    width: 55px;
-    height: 55px;
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 10%;
+    border-style: solid;
+    border-color: black;
+}
+
+.blankDiv {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+#equal {
+    background-color: orange;
+}
+
+#clear {
+    background-color: aqua;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#add, #subtract, #multiply, #divide {
+    background: rgb(166, 245, 166);
 }

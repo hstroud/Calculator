@@ -20,25 +20,34 @@ var btnDecimal = document.getElementById("decimalPoint");
 var btnEqual = document.getElementById("equal");
 
 var values = [];
+var value1 = "";
+var value2 = "";
+var nextValue = false;
+var operator;
 
 btnAdd.addEventListener("click", () => {
     screenNumber.value = screenNumber.value + " + ";
+    values.push("+");
 });
 
 btnSubtract.addEventListener("click", () => {
     screenNumber.value = screenNumber.value + " - ";
+    values.push("-");
 });
 
 btnDivide.addEventListener("click", () => {
     screenNumber.value = screenNumber.value + " / ";
+    values.push("/");
 });
 
 btnMultiply.addEventListener("click", () => {
     screenNumber.value = screenNumber.value + " * ";
+    values.push("*");
 });
 
 btnDecimal.addEventListener("click", () => {
     screenNumber.value = screenNumber.value + ".";
+    values.push(".");
 });
 
 
@@ -94,27 +103,50 @@ btn9.addEventListener("click", () => {
 
 btnClear.addEventListener("click", () => {
     screenNumber.value = "";
+    while(values.length > 0) {
+        values.pop();
+    }
+
+    value1 = "";
+    value2 = "";
+    nextValue = false;
 });
 
 btnEqual.addEventListener("click", () => {
-    screenNumber.value = add();
-    values[0] = parseInt(screenNumber.value, 10);
-    values.pop();
+    for(i = 0; i < values.length; i++) {
+        if (!isNaN(values[i])) {
+            if(!nextValue) {
+                value1 = value1 + values[i];
+            } 
+            else {
+                value2 = value2 + values[i];
+            }
+        } 
+        else {
+            operator = values[i];
+            nextValue = true;
+        }
+    }
+    screenNumber.value = operate(value1, operator, value2);
+    value1 = "";
+    value2 = "";
+    values.length = 0;
+    nextValue = false;
+    values.push(Number(screenNumber.value));
 });
 
 
-function add() {
-    return values[0] + values[1];
-}
-
-function subtract() {
-    return values[0] - values[1];
-}
-
-function multiply() {
-    return values[0] * values[1];
-}
-
-function divide() {
-    return values[0] / values[1];
+function operate(value1, operator, value2) {
+    if(operator == "+"){
+        return Number(value1) + Number(value2);
+    }
+    else if(operator == "-"){
+        return Number(value1) - Number(value2);
+    }
+    else if(operator == "*"){
+        return Number(value1) * Number(value2);
+    }
+    else if(operator == "/"){
+        return Number(value1) / Number(value2);
+    }
 }
